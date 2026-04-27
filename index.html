@@ -1,0 +1,1296 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Guía de Reutilización de Equipos · Hardware</title>
+<meta name="description" content="Guía interna del Departamento de Hardware para identificar y evaluar equipos de la competencia." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --bg: #F5F1E8;
+    --bg-tint: #EFE9DA;
+    --surface: #FFFFFF;
+    --ink: #0F0F0F;
+    --ink-soft: #2A2A2A;
+    --muted: #6B6B6B;
+    --border: #E2DCCC;
+    --border-strong: #C9C0A9;
+    --accent: #E84A1F;
+    --accent-soft: #FCE7DF;
+    --green: #1B4D3E;
+    --green-soft: #DCE8E2;
+    --amber: #B8860B;
+    --amber-soft: #F5E9C4;
+    --red: #B91C1C;
+    --red-soft: #FADBD7;
+    --shadow-soft: 0 1px 0 rgba(15,15,15,.04), 0 8px 24px -12px rgba(15,15,15,.08);
+    --shadow-card: 0 1px 0 rgba(15,15,15,.04), 0 12px 32px -16px rgba(15,15,15,.12);
+    --radius-sm: 6px;
+    --radius: 10px;
+    --radius-lg: 16px;
+    --max: 1240px;
+    --display: 'Bricolage Grotesque', serif;
+    --body: 'DM Sans', system-ui, sans-serif;
+    --mono: 'JetBrains Mono', ui-monospace, monospace;
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:var(--body);
+    background:var(--bg);
+    color:var(--ink);
+    line-height:1.55;
+    font-size:16px;
+    -webkit-font-smoothing:antialiased;
+    background-image:
+      radial-gradient(circle at 100% 0%, rgba(232,74,31,.04), transparent 40%),
+      radial-gradient(circle at 0% 100%, rgba(27,77,62,.04), transparent 40%);
+    min-height:100vh;
+  }
+
+  /* ── Header ─────────────────────────────── */
+  .topbar{
+    position:sticky; top:0; z-index:50;
+    background:rgba(245,241,232,.85);
+    backdrop-filter:blur(12px);
+    -webkit-backdrop-filter:blur(12px);
+    border-bottom:1px solid var(--border);
+  }
+  .topbar-inner{
+    max-width:var(--max); margin:0 auto;
+    padding:14px 32px;
+    display:flex; align-items:center; justify-content:space-between;
+  }
+  .brand{display:flex; align-items:center; gap:10px; font-weight:600; font-size:14px; letter-spacing:-.01em}
+  .brand-mark{
+    width:28px; height:28px; border-radius:8px;
+    background:var(--ink); color:var(--bg);
+    display:grid; place-items:center;
+    font-family:var(--display); font-weight:700;
+  }
+  .brand-meta{font-family:var(--mono); font-size:11px; color:var(--muted); letter-spacing:.05em; text-transform:uppercase}
+
+  /* ── Hero ──────────────────────────────── */
+  .hero{
+    max-width:var(--max); margin:0 auto;
+    padding:80px 32px 56px;
+  }
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    font-family:var(--mono); font-size:11px; letter-spacing:.12em;
+    text-transform:uppercase; color:var(--accent);
+    padding:6px 12px; background:var(--accent-soft); border-radius:999px;
+    margin-bottom:24px;
+  }
+  .eyebrow::before{content:"●"; font-size:8px}
+  h1.hero-title{
+    font-family:var(--display);
+    font-size:clamp(40px, 6vw, 72px);
+    line-height:1.02; letter-spacing:-.03em;
+    font-weight:700; max-width:18ch;
+    margin-bottom:24px;
+  }
+  h1.hero-title em{
+    font-style:italic; font-weight:500;
+    color:var(--accent);
+  }
+  .hero-lead{
+    font-size:18px; max-width:62ch; color:var(--ink-soft);
+    margin-bottom:36px;
+  }
+  .hero-meta{
+    display:flex; flex-wrap:wrap; gap:24px;
+    padding-top:28px; border-top:1px solid var(--border);
+    font-family:var(--mono); font-size:12px;
+    color:var(--muted); text-transform:uppercase; letter-spacing:.08em;
+  }
+  .hero-meta span strong{color:var(--ink); font-weight:500}
+
+  /* ── Section base ─────────────────────── */
+  section.block{
+    max-width:var(--max); margin:0 auto;
+    padding:48px 32px;
+  }
+  .section-head{
+    display:flex; align-items:flex-end; justify-content:space-between;
+    gap:24px; margin-bottom:40px; flex-wrap:wrap;
+  }
+  .section-head-num{
+    font-family:var(--mono); font-size:12px;
+    color:var(--muted); letter-spacing:.1em;
+    margin-bottom:8px; text-transform:uppercase;
+  }
+  h2.section-title{
+    font-family:var(--display);
+    font-size:clamp(28px, 3.4vw, 44px);
+    line-height:1.1; letter-spacing:-.02em;
+    font-weight:600;
+  }
+  .section-sub{color:var(--muted); max-width:48ch; font-size:15px}
+
+  /* ── Tabs (requisitos) ────────────────── */
+  .tabs{
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:var(--radius-lg);
+    overflow:hidden;
+    box-shadow:var(--shadow-card);
+  }
+  .tablist{
+    display:flex; flex-wrap:wrap;
+    border-bottom:1px solid var(--border);
+    background:var(--bg-tint);
+  }
+  .tab{
+    flex:1; min-width:fit-content;
+    padding:18px 24px;
+    background:transparent; border:none;
+    cursor:pointer;
+    font-family:var(--body); font-weight:500; font-size:14px;
+    color:var(--muted);
+    border-right:1px solid var(--border);
+    transition:all .15s ease;
+    display:flex; align-items:center; gap:10px;
+    text-align:left;
+  }
+  .tab:last-child{border-right:none}
+  .tab:hover{color:var(--ink); background:rgba(255,255,255,.5)}
+  .tab.is-active{
+    color:var(--ink); background:var(--surface);
+    font-weight:600;
+    box-shadow:inset 0 -3px 0 var(--accent);
+  }
+  .tab-icon{
+    width:28px; height:28px; border-radius:6px;
+    background:var(--bg-tint); display:grid; place-items:center;
+    font-size:14px;
+  }
+  .tab.is-active .tab-icon{background:var(--accent-soft)}
+
+  .tabpanels{padding:32px 36px 36px}
+  .tabpanel{display:none}
+  .tabpanel.is-active{display:block; animation:fade .25s ease}
+  @keyframes fade{from{opacity:0; transform:translateY(4px)} to{opacity:1; transform:translateY(0)}}
+
+  .req-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(260px, 1fr));
+    gap:20px;
+  }
+  .req-card{
+    padding:20px;
+    background:var(--bg-tint);
+    border-radius:var(--radius);
+    border:1px solid var(--border);
+  }
+  .req-card h4{
+    font-family:var(--display); font-size:17px; font-weight:600;
+    margin-bottom:12px; letter-spacing:-.01em;
+  }
+  .req-card ul{list-style:none; display:flex; flex-direction:column; gap:8px}
+  .req-card li{
+    font-size:14px; color:var(--ink-soft);
+    padding-left:18px; position:relative;
+  }
+  .req-card li::before{
+    content:""; position:absolute; left:0; top:9px;
+    width:6px; height:6px; border-radius:50%;
+    background:var(--accent);
+  }
+  .req-card li.warn::before{background:var(--amber)}
+  .req-card li.info::before{background:var(--green)}
+  .req-card li code{
+    font-family:var(--mono); font-size:12px;
+    background:var(--surface); padding:1px 6px; border-radius:4px;
+    border:1px solid var(--border);
+  }
+  .req-note{
+    margin-top:20px; padding:16px 20px;
+    background:var(--amber-soft); border-radius:var(--radius);
+    font-size:14px; color:var(--ink-soft);
+    border-left:3px solid var(--amber);
+  }
+  .req-note strong{color:var(--ink)}
+
+  /* ── Vendor grid ──────────────────────── */
+  .vendor-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill, minmax(280px, 1fr));
+    gap:20px;
+  }
+  .vendor-card{
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:var(--radius-lg);
+    padding:24px 24px 20px;
+    cursor:pointer;
+    transition:all .2s ease;
+    position:relative;
+    overflow:hidden;
+    text-align:left;
+    font-family:inherit;
+    color:inherit;
+    display:flex; flex-direction:column;
+  }
+  .vendor-card:hover{
+    transform:translateY(-2px);
+    box-shadow:var(--shadow-card);
+    border-color:var(--ink);
+  }
+  .vendor-card::before{
+    content:""; position:absolute; top:0; left:0; right:0; height:4px;
+    background:var(--vendor-color, var(--accent));
+    transform:scaleX(0); transform-origin:left;
+    transition:transform .3s ease;
+  }
+  .vendor-card:hover::before{transform:scaleX(1)}
+  .vendor-num{
+    font-family:var(--mono); font-size:11px;
+    color:var(--muted); letter-spacing:.1em;
+    margin-bottom:14px;
+  }
+  .vendor-name{
+    font-family:var(--display); font-size:24px; font-weight:700;
+    letter-spacing:-.02em; margin-bottom:8px;
+  }
+  .vendor-tag{
+    font-size:13px; color:var(--muted);
+    margin-bottom:auto;
+  }
+  .vendor-foot{
+    display:flex; align-items:center; justify-content:space-between;
+    margin-top:24px; padding-top:16px;
+    border-top:1px solid var(--border);
+  }
+  .vendor-pills{display:flex; gap:6px; flex-wrap:wrap}
+  .pill{
+    font-family:var(--mono); font-size:10px;
+    padding:3px 8px; border-radius:4px;
+    text-transform:uppercase; letter-spacing:.06em;
+    background:var(--bg-tint); color:var(--muted);
+    border:1px solid var(--border);
+  }
+  .pill.green{background:var(--green-soft); color:var(--green); border-color:transparent}
+  .pill.red{background:var(--red-soft); color:var(--red); border-color:transparent}
+  .vendor-arrow{
+    width:36px; height:36px; border-radius:50%;
+    background:var(--bg-tint);
+    display:grid; place-items:center;
+    transition:all .2s ease;
+    flex-shrink:0;
+  }
+  .vendor-card:hover .vendor-arrow{
+    background:var(--ink); color:var(--bg);
+    transform:translateX(2px);
+  }
+
+  /* ── Detail view ──────────────────────── */
+  .detail{display:none}
+  .detail.is-active{display:block; animation:fade .3s ease}
+
+  .detail-back{
+    background:none; border:none; cursor:pointer;
+    font-family:var(--body); font-size:14px; font-weight:500;
+    color:var(--muted);
+    display:inline-flex; align-items:center; gap:8px;
+    padding:8px 0;
+    margin-bottom:24px;
+    transition:color .15s ease;
+  }
+  .detail-back:hover{color:var(--ink)}
+
+  .detail-head{
+    display:grid;
+    grid-template-columns: 1fr auto;
+    gap:32px; align-items:end;
+    padding-bottom:32px; margin-bottom:40px;
+    border-bottom:2px solid var(--ink);
+  }
+  .detail-eyebrow{
+    font-family:var(--mono); font-size:12px; letter-spacing:.1em;
+    text-transform:uppercase; color:var(--muted);
+    margin-bottom:12px;
+  }
+  .detail-name{
+    font-family:var(--display);
+    font-size:clamp(48px, 7vw, 88px);
+    line-height:.95; letter-spacing:-.04em;
+    font-weight:700;
+  }
+  .detail-meta{
+    display:flex; flex-direction:column; gap:6px;
+    text-align:right;
+    font-family:var(--mono); font-size:12px;
+    color:var(--muted); letter-spacing:.04em;
+  }
+  .detail-meta strong{color:var(--ink); font-weight:500}
+
+  .columns{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:20px;
+  }
+  @media(max-width:980px){ .columns{grid-template-columns:1fr} }
+
+  .column{
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:var(--radius-lg);
+    padding:28px;
+    box-shadow:var(--shadow-soft);
+    display:flex; flex-direction:column;
+    gap:18px;
+  }
+  .column-head{
+    display:flex; align-items:center; gap:12px;
+    padding-bottom:18px; border-bottom:1px solid var(--border);
+  }
+  .column-icon{
+    width:38px; height:38px; border-radius:9px;
+    background:var(--bg-tint); display:grid; place-items:center;
+    font-size:18px; flex-shrink:0;
+  }
+  .column-title{
+    font-family:var(--display); font-size:18px; font-weight:600;
+    letter-spacing:-.01em;
+  }
+  .column-tag{
+    font-family:var(--mono); font-size:10px; color:var(--muted);
+    text-transform:uppercase; letter-spacing:.1em;
+    margin-top:2px;
+  }
+
+  .item{padding:0}
+  .item-label{
+    font-family:var(--mono); font-size:11px;
+    color:var(--muted); text-transform:uppercase;
+    letter-spacing:.08em; margin-bottom:6px;
+  }
+  .item-name{
+    font-weight:600; font-size:15px; margin-bottom:6px;
+    display:flex; align-items:center; gap:10px;
+    flex-wrap:wrap;
+  }
+  .badge{
+    font-family:var(--mono); font-size:10px;
+    padding:2px 8px; border-radius:4px;
+    text-transform:uppercase; letter-spacing:.06em;
+    font-weight:500;
+  }
+  .badge.ok{background:var(--green-soft); color:var(--green)}
+  .badge.no{background:var(--red-soft); color:var(--red)}
+  .badge.warn{background:var(--amber-soft); color:var(--amber)}
+
+  .item-list{list-style:none; display:flex; flex-direction:column; gap:6px; margin-top:8px}
+  .item-list li{
+    font-size:13.5px; color:var(--ink-soft);
+    padding-left:16px; position:relative;
+    line-height:1.5;
+  }
+  .item-list li::before{
+    content:""; position:absolute; left:0; top:8px;
+    width:5px; height:5px; border-radius:50%;
+    background:var(--ink-soft);
+  }
+  .item-list li.ok::before{background:var(--green)}
+  .item-list li.no::before{background:var(--red)}
+  .item-list li.warn::before{background:var(--amber)}
+  .item-list li code{
+    font-family:var(--mono); font-size:12px;
+    background:var(--bg-tint); padding:1px 6px; border-radius:4px;
+  }
+  .item-list li strong{color:var(--ink)}
+
+  .divider{
+    height:1px; background:var(--border); margin:4px 0;
+  }
+
+  .solution{
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    padding:20px;
+    background:var(--bg-tint);
+    position:relative;
+  }
+  .solution.recommended{
+    border-color:var(--accent);
+    background:var(--accent-soft);
+  }
+  .solution-head{
+    display:flex; align-items:center; gap:10px;
+    margin-bottom:14px;
+  }
+  .solution-rank{
+    font-family:var(--display); font-size:18px; font-weight:700;
+    width:30px; height:30px; border-radius:50%;
+    display:grid; place-items:center;
+    background:var(--ink); color:var(--bg);
+  }
+  .solution.recommended .solution-rank{background:var(--accent)}
+  .solution-title{
+    font-family:var(--display); font-size:16px; font-weight:600;
+    line-height:1.25;
+  }
+  .solution-rec-tag{
+    font-family:var(--mono); font-size:10px;
+    padding:2px 6px; background:var(--ink); color:var(--bg);
+    border-radius:3px; text-transform:uppercase;
+    letter-spacing:.08em;
+    margin-left:auto;
+  }
+  .solution.recommended .solution-rec-tag{background:var(--accent)}
+  .solution-body{font-size:13.5px; color:var(--ink-soft); margin-bottom:14px}
+  .solution-body ul{list-style:none; display:flex; flex-direction:column; gap:5px; margin-top:6px}
+  .solution-body ul li{padding-left:14px; position:relative}
+  .solution-body ul li::before{
+    content:"+"; position:absolute; left:0; top:0;
+    color:var(--green); font-weight:700;
+  }
+  .pros-cons{
+    display:grid; grid-template-columns:1fr 1fr; gap:12px;
+    padding-top:14px; border-top:1px dashed var(--border-strong);
+  }
+  .pros-cons h5{
+    font-family:var(--mono); font-size:10px;
+    text-transform:uppercase; letter-spacing:.08em;
+    margin-bottom:8px; color:var(--muted);
+  }
+  .pros-cons ul{list-style:none; display:flex; flex-direction:column; gap:4px}
+  .pros-cons li{
+    font-size:12.5px; color:var(--ink-soft);
+    padding-left:14px; position:relative; line-height:1.4;
+  }
+  .pros li::before{
+    content:"✓"; position:absolute; left:0; top:0;
+    color:var(--green); font-weight:600;
+  }
+  .cons li::before{
+    content:"−"; position:absolute; left:0; top:0;
+    color:var(--red); font-weight:700;
+  }
+  .solution-note{
+    margin-top:12px; padding:10px 12px;
+    background:var(--amber-soft);
+    border-left:3px solid var(--amber);
+    border-radius:4px;
+    font-size:12.5px; color:var(--ink-soft);
+  }
+  .solution-note strong{color:var(--ink)}
+
+  /* ── Gallery (vendor detail) ──────────── */
+  .gallery{
+    margin: -20px 0 36px;
+    padding-bottom: 36px;
+    border-bottom: 1px solid var(--border);
+  }
+  .gallery-label{
+    font-family:var(--mono); font-size:11px;
+    color:var(--muted); letter-spacing:.1em;
+    text-transform:uppercase; margin-bottom:16px;
+    display:flex; align-items:center; gap:10px;
+  }
+  .gallery-label::before{
+    content:""; width:24px; height:1px; background:var(--muted);
+  }
+  .gallery-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(200px, 1fr));
+    gap:14px;
+  }
+  .gallery-item{
+    position:relative;
+    aspect-ratio: 4/3;
+    overflow:hidden;
+    border-radius:var(--radius);
+    border:1px solid var(--border);
+    background:var(--bg-tint);
+    cursor:zoom-in;
+    transition: all .25s ease;
+  }
+  .gallery-item:hover{
+    transform:translateY(-2px);
+    box-shadow:var(--shadow-card);
+    border-color:var(--ink);
+  }
+  .gallery-item img{
+    width:100%; height:100%;
+    object-fit:cover; display:block;
+    transition: transform .4s ease;
+  }
+  .gallery-item:hover img{ transform:scale(1.04); }
+  .gallery-item-tag{
+    position:absolute; bottom:8px; left:8px;
+    font-family:var(--mono); font-size:10px;
+    padding:4px 8px;
+    background:rgba(15,15,15,.85); color:var(--bg);
+    border-radius:4px;
+    text-transform:uppercase; letter-spacing:.06em;
+    backdrop-filter: blur(4px);
+  }
+  .gallery-item-zoom{
+    position:absolute; top:8px; right:8px;
+    width:28px; height:28px; border-radius:50%;
+    background:rgba(255,255,255,.92);
+    display:grid; place-items:center;
+    color:var(--ink);
+    opacity:0; transition: opacity .2s ease;
+  }
+  .gallery-item:hover .gallery-item-zoom{ opacity:1; }
+
+  /* Lightbox */
+  .lightbox{
+    position:fixed; inset:0; z-index:100;
+    background:rgba(15,15,15,.92);
+    display:none; align-items:center; justify-content:center;
+    padding:32px;
+    cursor:zoom-out;
+    backdrop-filter: blur(6px);
+  }
+  .lightbox.is-active{ display:flex; animation: fade .2s ease; }
+  .lightbox img{
+    max-width:100%; max-height:90vh;
+    object-fit:contain;
+    border-radius:8px;
+    box-shadow:0 30px 80px rgba(0,0,0,.5);
+  }
+  .lightbox-close{
+    position:absolute; top:24px; right:24px;
+    width:44px; height:44px; border-radius:50%;
+    background:rgba(255,255,255,.12); color:#fff;
+    border:none; cursor:pointer;
+    display:grid; place-items:center;
+    font-size:22px; line-height:1;
+    transition: background .15s ease;
+  }
+  .lightbox-close:hover{ background:rgba(255,255,255,.22); }
+  .lightbox-caption{
+    position:absolute; bottom:24px; left:50%; transform:translateX(-50%);
+    font-family:var(--mono); font-size:12px; color:rgba(255,255,255,.7);
+    letter-spacing:.06em;
+  }
+
+  @media(max-width:560px){
+    .gallery-grid{ grid-template-columns:repeat(2, 1fr); }
+  }
+
+  /* ── Vendor card thumbnail (mini preview en home) ──── */
+  .vendor-thumb{
+    width:100%; height:140px;
+    border-radius:var(--radius);
+    overflow:hidden;
+    margin: 4px 0 16px;
+    background:var(--bg-tint);
+    position:relative;
+  }
+  .vendor-thumb img{
+    width:100%; height:100%; object-fit:cover; display:block;
+    transition: transform .4s ease;
+  }
+  .vendor-card:hover .vendor-thumb img{ transform:scale(1.05); }
+
+  /* ── Footer ───────────────────────────── */
+  footer{
+    border-top:1px solid var(--border);
+    margin-top:80px; padding:40px 32px;
+    text-align:center;
+    font-family:var(--mono); font-size:12px;
+    color:var(--muted); letter-spacing:.04em;
+  }
+  footer p{margin-bottom:6px}
+
+  /* ── Responsive ───────────────────────── */
+  @media(max-width:780px){
+    .hero{padding:48px 24px 36px}
+    section.block{padding:36px 24px}
+    .topbar-inner{padding:12px 20px}
+    .detail-head{grid-template-columns:1fr; gap:16px}
+    .detail-meta{text-align:left}
+    .tabpanels{padding:24px}
+    .tab{padding:14px 16px}
+    footer{padding:32px 24px}
+  }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <div class="brand">
+      <span class="brand-mark">⚔</span>
+      <span>Hardware <span style="color:var(--muted); font-weight:400">/ Reutilización</span></span>
+    </div>
+    <span class="brand-meta">v1.0 · Dpto. Hardware</span>
+  </div>
+</header>
+
+<!-- ============ HOME VIEW ============ -->
+<div id="view-home">
+
+  <!-- Hero -->
+  <section class="hero">
+    <span class="eyebrow">Guía interna · Departamento de Ventas</span>
+    <h1 class="hero-title">Reutilización de equipos: <em>casos de la competencia</em>.</h1>
+    <p class="hero-lead">
+      Recopilación de los packs de hardware más habituales en clientes que provienen
+      de la competencia, con condiciones de reutilización, soluciones recomendadas
+      e imágenes de referencia para identificación rápida.
+    </p>
+    <div class="hero-meta">
+      <span><strong>5</strong> proveedores</span>
+      <span><strong>4</strong> sistemas operativos</span>
+      <span>Última revisión <strong>2026</strong></span>
+    </div>
+  </section>
+
+  <!-- Requisitos generales -->
+  <section class="block" id="requisitos">
+    <div class="section-head">
+      <div>
+        <div class="section-head-num">01 / Requisitos generales</div>
+        <h2 class="section-title">Antes de evaluar un caso</h2>
+      </div>
+      <p class="section-sub">
+        Requisitos mínimos comunes a cualquier instalación. Verifica primero
+        conexión y sistema operativo antes de pasar a la ficha del proveedor.
+      </p>
+    </div>
+
+    <div class="tabs">
+      <div class="tablist" role="tablist">
+        <button class="tab is-active" data-tab="net" role="tab">
+          <span class="tab-icon">🌐</span>Conexión a Internet
+        </button>
+        <button class="tab" data-tab="win" role="tab">
+          <span class="tab-icon">🪟</span>Windows
+        </button>
+        <button class="tab" data-tab="and" role="tab">
+          <span class="tab-icon">🤖</span>Android
+        </button>
+        <button class="tab" data-tab="ipad" role="tab">
+          <span class="tab-icon">📱</span>iPad
+        </button>
+        <button class="tab" data-tab="mac" role="tab">
+          <span class="tab-icon">🍎</span>Mac
+        </button>
+      </div>
+
+      <div class="tabpanels">
+        <!-- INTERNET -->
+        <div class="tabpanel is-active" data-panel="net">
+          <div class="req-grid">
+            <div class="req-card">
+              <h4>Tipo de conexión</h4>
+              <ul>
+                <li>A través de <strong>router</strong> (no son válidos los datos móviles)</li>
+                <li>Conexión <strong>estable</strong>, sin cortes ni interferencias</li>
+                <li class="warn">Router SIM 4G/5G: requiere buena cobertura → recomendable auditoría</li>
+              </ul>
+            </div>
+            <div class="req-card">
+              <h4>Velocidad mínima</h4>
+              <ul>
+                <li>Mínimo <code>30 Mbps</code> de subida y bajada</li>
+                <li>Si no se cumple → <strong>auditoría de red</strong> y advertir limitaciones</li>
+              </ul>
+            </div>
+            <div class="req-card">
+              <h4>Conexión rural</h4>
+              <ul>
+                <li class="warn">Parabólica o similar → <strong>auditoría obligatoria siempre</strong></li>
+                <li>Avisar al cliente: con lluvia o tormenta puede no funcionar</li>
+              </ul>
+            </div>
+            <div class="req-card">
+              <h4>Impresoras WiFi</h4>
+              <ul>
+                <li>Red exclusiva en <code>2.4 GHz</code></li>
+                <li>Señal WiFi suficiente en el punto de colocación</li>
+                <li class="warn">Auditoría obligatoria si: varias plantas, muros gruesos/metálicos o &gt; 15 m del router</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- WINDOWS -->
+        <div class="tabpanel" data-panel="win">
+          <div class="req-grid">
+            <div class="req-card">
+              <h4>Sistema</h4>
+              <ul>
+                <li>Windows <code>10</code> o superior</li>
+                <li>Arquitectura <code>x64</code></li>
+                <li><code>8 GB RAM</code> (4 GB en algunos casos, consultar)</li>
+              </ul>
+            </div>
+            <div class="req-card">
+              <h4>Impresoras compatibles</h4>
+              <ul>
+                <li class="info"><strong>USB</strong> y <strong>LAN</strong> sin restricción</li>
+                <li class="warn"><strong>WiFi:</strong> nunca configuramos las que no son nuestras</li>
+              </ul>
+            </div>
+            <div class="req-card">
+              <h4>Excepción WiFi</h4>
+              <ul>
+                <li>Reutilización solo con <strong>aprobación de Hardware</strong></li>
+                <li>Cliente con conocimiento técnico para conectarla a su red</li>
+                <li>Asignación de <strong>IP fija</strong></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- ANDROID -->
+        <div class="tabpanel" data-panel="and">
+          <div class="req-grid">
+            <div class="req-card">
+              <h4>Sistema</h4>
+              <ul>
+                <li>Android <code>12</code> o superior</li>
+                <li>Android <code>13+</code> para uso como <strong>KDS</strong></li>
+              </ul>
+            </div>
+            <div class="req-card">
+              <h4>Hardware</h4>
+              <ul>
+                <li><code>4 GB RAM</code> con procesador hexacore</li>
+                <li><code>8 GB RAM</code> con procesador quadcore</li>
+              </ul>
+            </div>
+            <div class="req-card">
+              <h4>Impresoras compatibles</h4>
+              <ul>
+                <li class="info">HPRT TP808 (WiFi o LAN)</li>
+                <li class="info">SUNMI Cloud Printer (WiFi)</li>
+                <li class="warn">Las SUNMI deben ser <strong>nuevas</strong> o no estar asociadas a otro SUNMI Partner</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- IPAD -->
+        <div class="tabpanel" data-panel="ipad">
+          <div class="req-grid">
+            <div class="req-card">
+              <h4>Sistema</h4>
+              <ul>
+                <li>iOS <code>17</code> o superior</li>
+              </ul>
+            </div>
+            <div class="req-card">
+              <h4>Impresoras compatibles</h4>
+              <ul>
+                <li class="info">SUNMI Cloud Printer (WiFi)</li>
+                <li class="warn">Deben ser <strong>nuevas</strong> o no estar asociadas a otro SUNMI Partner</li>
+              </ul>
+            </div>
+          </div>
+          <div class="req-note">
+            <strong>Nota:</strong> el iPad no puede imprimir directamente en impresoras EPSON
+            (requieren JSPrintManager, que no está disponible en iOS). Debe combinarse con un TPV Windows.
+          </div>
+        </div>
+
+        <!-- MAC -->
+        <div class="tabpanel" data-panel="mac">
+          <div class="req-grid">
+            <div class="req-card">
+              <h4>Sistema</h4>
+              <ul>
+                <li>macOS <code>12</code> o superior</li>
+              </ul>
+            </div>
+            <div class="req-card">
+              <h4>Impresoras compatibles</h4>
+              <ul>
+                <li class="info">SUNMI Cloud Printer (WiFi)</li>
+                <li class="warn">Deben ser <strong>nuevas</strong> o no estar asociadas a otro SUNMI Partner</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Vendors -->
+  <section class="block" id="proveedores">
+    <div class="section-head">
+      <div>
+        <div class="section-head-num">02 / Proveedores</div>
+        <h2 class="section-title">Casos por competidor</h2>
+      </div>
+      <p class="section-sub">
+        Selecciona un proveedor para ver su ficha completa: equipo, impresora y la solución recomendada.
+      </p>
+    </div>
+
+    <div class="vendor-grid" id="vendorGrid"><!-- Inyectado por JS --></div>
+  </section>
+
+</div>
+
+<!-- ============ DETAIL VIEW ============ -->
+<div id="view-detail" class="detail">
+  <section class="block">
+    <button class="detail-back" id="backBtn">← Volver al índice</button>
+    <div class="detail-head">
+      <div>
+        <div class="detail-eyebrow" id="detailEyebrow">Proveedor</div>
+        <div class="detail-name" id="detailName">—</div>
+      </div>
+      <div class="detail-meta">
+        <span>FICHA TÉCNICA</span>
+        <span><strong id="detailReuseLabel">—</strong></span>
+        <span><strong id="detailSolLabel">—</strong></span>
+      </div>
+    </div>
+
+    <!-- Galería de imágenes de referencia -->
+    <div class="gallery" id="detailGallery">
+      <div class="gallery-label">Imágenes de referencia · Identificación visual</div>
+      <div class="gallery-grid" id="galleryGrid"></div>
+    </div>
+
+    <div class="columns">
+      <!-- TPV -->
+      <article class="column">
+        <div class="column-head">
+          <div class="column-icon">💻</div>
+          <div>
+            <div class="column-title">TPV actual</div>
+            <div class="column-tag">Terminal punto de venta</div>
+          </div>
+        </div>
+        <div id="colTpv"></div>
+      </article>
+
+      <!-- Impresoras -->
+      <article class="column">
+        <div class="column-head">
+          <div class="column-icon">🖨️</div>
+          <div>
+            <div class="column-title">Impresoras</div>
+            <div class="column-tag">Hardware de impresión</div>
+          </div>
+        </div>
+        <div id="colPrinter"></div>
+      </article>
+
+      <!-- Soluciones -->
+      <article class="column">
+        <div class="column-head">
+          <div class="column-icon">🛠️</div>
+          <div>
+            <div class="column-title">Soluciones</div>
+            <div class="column-tag">Plan recomendado</div>
+          </div>
+        </div>
+        <div id="colSolutions"></div>
+      </article>
+    </div>
+  </section>
+</div>
+
+<footer>
+  <p>Guía de reutilización de equipos · Departamento de Hardware</p>
+  <p>Documento de uso interno — apoyo al equipo de ventas</p>
+</footer>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" aria-label="Cerrar">×</button>
+  <img id="lightboxImg" src="" alt="" />
+  <div class="lightbox-caption" id="lightboxCaption"></div>
+</div>
+
+<script>
+/* ────────────────── DATA ────────────────── */
+const VENDORS = [
+  {
+    id: 'sumup',
+    name: 'Sumup',
+    tagline: 'TPV propio + iPad + impresora EPSON',
+    color: '#0070F3',
+    reuse: 'Reutilización parcial',
+    solutions: 2,
+    pills: [{label:'iPad', tone:'green'},{label:'EPSON', tone:'green'},{label:'Android', tone:'red'}],
+    images: [
+      {src:'images/sumup-1.jpg', tag:'TPV Sumup'},
+      {src:'images/sumup-2.jpg', tag:'Impresora Sumup'},
+      {src:'images/sumup-3.jpg', tag:'Caso iPad + EPSON'}
+    ],
+    tpv: [
+      {
+        name:'iPad', tag:'Caso más común', badge:{text:'Reutilizable parcial', tone:'warn'},
+        list:[
+          {tone:'no', text:'<strong>No compatible</strong> con las impresoras EPSON del pack actual'},
+          {tone:'ok', text:'Sí reutilizable como comandera o KDS'}
+        ]
+      },
+      {
+        name:'TPV propio (Android)', badge:{text:'No compatible', tone:'no'},
+        list:[
+          {tone:'no', text:'Suelen montar Android <code>7-9</code>'},
+          {tone:'no', text:'Requisito mínimo: Android <code>12</code>'},
+          {tone:'warn', text:'Generalmente <strong>no reutilizable</strong>'}
+        ]
+      }
+    ],
+    printer: [
+      {
+        name:'EPSON TM-m30III', badge:{text:'Compatible Windows', tone:'ok'},
+        list:[
+          {tone:'no', text:'<strong>No</strong> compatible con iPad (requiere JSPrintManager)'},
+          {tone:'ok', text:'Compatible con Windows 10 / 11'},
+          {tone:'ok', text:'Conexión por <strong>USB</strong> o <strong>LAN</strong>'},
+          {tone:'no', text:'No compatible vía WiFi ni Bluetooth'}
+        ]
+      }
+    ],
+    solutionsList: [
+      {
+        rank:1, recommended:true, title:'TPV Windows 10/11 + iPad como comandera/KDS',
+        body:'Adquirir un TPV con Windows (también vale un portátil), mantener las impresoras EPSON por USB o LAN, y aprovechar el iPad como comandera o KDS.',
+        pros:['Reutilizas el 100% del hardware actual','Mejora operativa al añadir iPad como comandera/KDS'],
+        cons:['Mayor inversión inicial']
+      },
+      {
+        rank:2, recommended:false, title:'iPad como TPV principal + impresoras SUNMI',
+        body:'Sustituir las impresoras EPSON por SUNMI Cloud Printer y usar el iPad como terminal principal.',
+        pros:['Más económico (especialmente con 1 sola impresora)'],
+        cons:['Mayor probabilidad de incidencias','Posibles bloqueos (ej. La Liga)','~1 hora de configuración','Más difícil de encajar en agenda']
+      }
+    ]
+  },
+  {
+    id:'hiopos',
+    name:'HIOPOS',
+    tagline:'TPV Android bloqueado + impresoras genéricas',
+    color:'#7AB317',
+    reuse:'Reutilización parcial',
+    solutions:1,
+    pills:[{label:'USB/LAN', tone:'green'},{label:'Android', tone:'red'}],
+    images:[
+      {src:'images/hiopos-1.jpg', tag:'TPV HIOPOS'},
+      {src:'images/hiopos-2.jpg', tag:'Impresora HIOPOS'}
+    ],
+    tpv:[
+      {
+        name:'TPV Android', badge:{text:'No compatible', tone:'no'},
+        list:[
+          {tone:'no', text:'Versión habitual: Android <code>7-9</code>'},
+          {tone:'no', text:'<strong>Bloqueado por proveedor</strong>'},
+          {tone:'no', text:'No reutilizable como comandera ni KDS'}
+        ]
+      }
+    ],
+    printer:[
+      {
+        name:'Impresoras genéricas (USB / LAN)', badge:{text:'Compatible Windows', tone:'ok'},
+        list:[
+          {tone:'ok', text:'Compatibles con Windows 10 / 11'},
+          {tone:'ok', text:'Funcionan correctamente por <strong>USB</strong> y <strong>LAN</strong>'}
+        ]
+      }
+    ],
+    solutionsList:[
+      {
+        rank:1, recommended:true, title:'TPV Windows 10/11 + impresoras existentes',
+        body:'Adquirir TPV con Windows (también válido un portátil). El TPV actual no se puede reutilizar de ninguna forma.',
+        pros:['Se reutilizan las impresoras actuales','Solución estable y compatible'],
+        cons:['Inversión media — el TPV es el componente más caro del pack']
+      }
+    ]
+  },
+  {
+    id:'eposnow',
+    name:'eposnow',
+    tagline:'TPV Android con impresora integrada',
+    color:'#FF7C2A',
+    reuse:'Sin reutilización',
+    solutions:1,
+    pills:[{label:'Android', tone:'red'},{label:'Integrada', tone:'red'}],
+    images:[
+      {src:'images/eposnow-1.jpg', tag:'TPV eposnow + impresora integrada'},
+      {src:'images/eposnow-2.jpg', tag:'Pantalla de mantenimiento'}
+    ],
+    tpv:[
+      {
+        name:'TPV Android', badge:{text:'No compatible', tone:'no'},
+        list:[
+          {tone:'no', text:'Versiones antiguas de Android'},
+          {tone:'no', text:'<strong>Bloqueado por proveedor</strong>'},
+          {tone:'no', text:'No reutilizable (ni comandera ni KDS)'}
+        ]
+      }
+    ],
+    printer:[
+      {
+        name:'Impresora integrada en el TPV', badge:{text:'No compatible', tone:'no'},
+        list:[
+          {tone:'no', text:'No se puede reutilizar de ninguna forma'},
+          {tone:'no', text:'Va físicamente integrada en el TPV bloqueado'}
+        ]
+      }
+    ],
+    solutionsList:[
+      {
+        rank:1, recommended:true, title:'TPV Windows 10/11 + impresoras nuevas',
+        body:'Adquirir TPV Windows (alternativa: portátil) más las impresoras necesarias. Recomendado pack completo.',
+        note:'<strong>Importante:</strong> las impresoras WiFi solo son compatibles si las vendemos nosotros.',
+        pros:['Sistema 100% compatible y estable','Mejor rendimiento y menos incidencias'],
+        cons:['Mayor inversión inicial (TPV + impresoras)']
+      }
+    ]
+  },
+  {
+    id:'dishpos',
+    name:'DISHPOS',
+    tagline:'TPV Android bloqueado + impresoras EPSON',
+    color:'#E11A38',
+    reuse:'Reutilización parcial',
+    solutions:1,
+    pills:[{label:'EPSON', tone:'green'},{label:'Android', tone:'red'}],
+    images:[
+      {src:'images/dishpos-1.jpg', tag:'TPV DISHPOS (sobre base SUNMI)'},
+      {src:'images/dishpos-2.jpg', tag:'Impresora EPSON con DISHPOS'}
+    ],
+    tpv:[
+      {
+        name:'TPV Android', badge:{text:'No compatible', tone:'no'},
+        list:[
+          {tone:'no', text:'Versión habitual: Android <code>7-9</code>'},
+          {tone:'no', text:'<strong>Bloqueado por proveedor</strong>'},
+          {tone:'no', text:'No reutilizable (ni comandera ni KDS)'}
+        ]
+      }
+    ],
+    printer:[
+      {
+        name:'Impresoras EPSON (varios modelos)', badge:{text:'Compatible Windows', tone:'ok'},
+        list:[
+          {tone:'ok', text:'Compatibles con Windows 10 / 11'},
+          {tone:'ok', text:'Funcionan por <strong>USB</strong> y <strong>LAN</strong>'},
+          {tone:'no', text:'No compatibles vía WiFi ni Bluetooth'}
+        ]
+      }
+    ],
+    solutionsList:[
+      {
+        rank:1, recommended:true, title:'TPV Windows 10/11 + impresoras EPSON existentes',
+        body:'Adquirir TPV Windows (también vale un portátil). El TPV actual no se puede reutilizar.',
+        pros:['Se reutilizan las impresoras EPSON','Solución estable y compatible'],
+        cons:['Inversión media — el TPV es el componente más caro del pack']
+      }
+    ]
+  },
+  {
+    id:'turbopos',
+    name:'TurboPOS',
+    tagline:'TPV Android con impresora integrada',
+    color:'#FF6A1A',
+    reuse:'Sin reutilización',
+    solutions:1,
+    pills:[{label:'Android', tone:'red'},{label:'Integrada', tone:'red'}],
+    images:[
+      {src:'images/turbopos-1.jpg', tag:'TPV TurboPOS'},
+      {src:'images/turbopos-2.jpg', tag:'Impresora integrada TurboPOS'}
+    ],
+    tpv:[
+      {
+        name:'TPV Android', badge:{text:'No compatible', tone:'no'},
+        list:[
+          {tone:'no', text:'Versiones antiguas de Android'},
+          {tone:'no', text:'<strong>Bloqueado por proveedor</strong>'},
+          {tone:'no', text:'No reutilizable (ni comandera ni KDS)'}
+        ]
+      }
+    ],
+    printer:[
+      {
+        name:'Impresora integrada en el TPV', badge:{text:'No compatible', tone:'no'},
+        list:[
+          {tone:'no', text:'No se puede reutilizar de ninguna forma'},
+          {tone:'no', text:'Va físicamente integrada en el TPV bloqueado'}
+        ]
+      }
+    ],
+    solutionsList:[
+      {
+        rank:1, recommended:true, title:'TPV Windows 10/11 + impresoras nuevas',
+        body:'Adquirir TPV Windows (alternativa: portátil) y las impresoras necesarias. Recomendado pack completo.',
+        note:'<strong>Importante:</strong> las impresoras WiFi solo son compatibles si las vendemos nosotros.',
+        pros:['Sistema 100% compatible y estable','Mejor rendimiento y menos incidencias'],
+        cons:['Mayor inversión inicial (TPV + impresoras)']
+      }
+    ]
+  }
+];
+
+/* ────────────────── TABS ────────────────── */
+document.querySelectorAll('.tab').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    const tab = btn.dataset.tab;
+    document.querySelectorAll('.tab').forEach(b=>b.classList.remove('is-active'));
+    document.querySelectorAll('.tabpanel').forEach(p=>p.classList.remove('is-active'));
+    btn.classList.add('is-active');
+    document.querySelector(`.tabpanel[data-panel="${tab}"]`).classList.add('is-active');
+  });
+});
+
+/* ────────────────── VENDOR GRID ────────────────── */
+const grid = document.getElementById('vendorGrid');
+VENDORS.forEach((v,i)=>{
+  const pillsHtml = v.pills.map(p=>`<span class="pill ${p.tone}">${p.label}</span>`).join('');
+  const thumbHtml = v.images && v.images[0]
+    ? `<div class="vendor-thumb"><img src="${v.images[0].src}" alt="${v.name}" loading="lazy" /></div>`
+    : '';
+  const card = document.createElement('button');
+  card.className = 'vendor-card';
+  card.style.setProperty('--vendor-color', v.color);
+  card.innerHTML = `
+    <div class="vendor-num">0${i+1} / ${String(v.id).toUpperCase()}</div>
+    <div class="vendor-name">${v.name}</div>
+    <div class="vendor-tag">${v.tagline}</div>
+    ${thumbHtml}
+    <div class="vendor-foot">
+      <div class="vendor-pills">${pillsHtml}</div>
+      <div class="vendor-arrow" aria-hidden="true">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      </div>
+    </div>
+  `;
+  card.addEventListener('click', ()=>openVendor(v.id));
+  grid.appendChild(card);
+});
+
+/* ────────────────── DETAIL VIEW ────────────────── */
+const home = document.getElementById('view-home');
+const detail = document.getElementById('view-detail');
+const backBtn = document.getElementById('backBtn');
+
+function renderItems(arr){
+  return arr.map(item=>{
+    const badge = item.badge ? `<span class="badge ${item.badge.tone}">${item.badge.text}</span>` : '';
+    const list = item.list ? `<ul class="item-list">${item.list.map(l=>`<li class="${l.tone||''}">${l.text}</li>`).join('')}</ul>` : '';
+    const tag = item.tag ? `<div class="item-label">${item.tag}</div>` : '';
+    return `<div class="item">${tag}<div class="item-name">${item.name} ${badge}</div>${list}</div>`;
+  }).join('<div class="divider"></div>');
+}
+
+function renderSolutions(arr){
+  return arr.map(s=>{
+    const note = s.note ? `<div class="solution-note">${s.note}</div>` : '';
+    return `
+      <div class="solution ${s.recommended?'recommended':''}">
+        <div class="solution-head">
+          <div class="solution-rank">${s.rank}</div>
+          <div class="solution-title">${s.title}</div>
+          ${s.recommended?'<span class="solution-rec-tag">Recomendada</span>':''}
+        </div>
+        <div class="solution-body">${s.body}</div>
+        <div class="pros-cons">
+          <div class="pros">
+            <h5>Ventajas</h5>
+            <ul>${s.pros.map(p=>`<li>${p}</li>`).join('')}</ul>
+          </div>
+          <div class="cons">
+            <h5>Contras</h5>
+            <ul>${s.cons.map(c=>`<li>${c}</li>`).join('')}</ul>
+          </div>
+        </div>
+        ${note}
+      </div>
+    `;
+  }).join('');
+}
+
+function renderGallery(images){
+  if (!images || !images.length) return '';
+  return images.map((im, idx) => `
+    <button class="gallery-item" data-src="${im.src}" data-caption="${im.tag}" aria-label="Ampliar imagen">
+      <img src="${im.src}" alt="${im.tag}" loading="lazy" />
+      <span class="gallery-item-tag">${im.tag}</span>
+      <span class="gallery-item-zoom" aria-hidden="true">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.5-4.5M11 8v6M8 11h6"/></svg>
+      </span>
+    </button>
+  `).join('');
+}
+
+function openVendor(id){
+  const v = VENDORS.find(x=>x.id===id);
+  if(!v) return;
+
+  document.getElementById('detailEyebrow').textContent = v.tagline;
+  document.getElementById('detailName').textContent = v.name;
+  document.getElementById('detailName').style.color = v.color;
+  document.getElementById('detailReuseLabel').textContent = v.reuse;
+  document.getElementById('detailSolLabel').textContent = v.solutions + (v.solutions===1?' solución':' soluciones');
+
+  // Galería
+  const galleryEl = document.getElementById('detailGallery');
+  const gridEl = document.getElementById('galleryGrid');
+  if (v.images && v.images.length){
+    gridEl.innerHTML = renderGallery(v.images);
+    galleryEl.style.display = 'block';
+    gridEl.querySelectorAll('.gallery-item').forEach(el=>{
+      el.addEventListener('click', ()=>openLightbox(el.dataset.src, el.dataset.caption));
+    });
+  } else {
+    galleryEl.style.display = 'none';
+  }
+
+  document.getElementById('colTpv').innerHTML = renderItems(v.tpv);
+  document.getElementById('colPrinter').innerHTML = renderItems(v.printer);
+  document.getElementById('colSolutions').innerHTML = renderSolutions(v.solutionsList);
+
+  home.style.display = 'none';
+  detail.classList.add('is-active');
+  window.scrollTo({top:0, behavior:'instant'});
+  history.replaceState(null,'','#'+id);
+}
+
+/* ────────────────── LIGHTBOX ────────────────── */
+const lightbox = document.getElementById('lightbox');
+const lightboxImg = document.getElementById('lightboxImg');
+const lightboxCaption = document.getElementById('lightboxCaption');
+function openLightbox(src, caption){
+  lightboxImg.src = src;
+  lightboxImg.alt = caption || '';
+  lightboxCaption.textContent = caption || '';
+  lightbox.classList.add('is-active');
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox(){
+  lightbox.classList.remove('is-active');
+  document.body.style.overflow = '';
+  lightboxImg.src = '';
+}
+lightbox.addEventListener('click', closeLightbox);
+document.querySelector('.lightbox-close').addEventListener('click', e=>{ e.stopPropagation(); closeLightbox(); });
+document.addEventListener('keydown', e=>{ if(e.key==='Escape') closeLightbox(); });
+
+function closeVendor(){
+  detail.classList.remove('is-active');
+  home.style.display = '';
+  window.scrollTo({top: document.getElementById('proveedores').offsetTop - 80, behavior:'instant'});
+  history.replaceState(null,'','#proveedores');
+}
+backBtn.addEventListener('click', closeVendor);
+
+/* Permitir abrir directamente con hash en la URL */
+window.addEventListener('load', ()=>{
+  const h = location.hash.replace('#','');
+  if(h && VENDORS.some(v=>v.id===h)) openVendor(h);
+});
+</script>
+
+</body>
+</html>
