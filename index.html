@@ -658,7 +658,7 @@
       e imágenes de referencia para identificación rápida.
     </p>
     <div class="hero-meta">
-      <span><strong>5</strong> proveedores</span>
+      <span><strong>6</strong> proveedores</span>
       <span><strong>4</strong> sistemas operativos</span>
       <span>Última revisión <strong>2026</strong></span>
     </div>
@@ -1157,6 +1157,60 @@ const VENDORS = [
         note:'<strong>Importante:</strong> las impresoras WiFi solo son compatibles si las vendemos nosotros.',
         pros:['Sistema 100% compatible y estable','Mejor rendimiento y menos incidencias'],
         cons:['Mayor inversión inicial (TPV + impresoras)']
+      }
+    ]
+  },
+  {
+    id:'loomis',
+    name:'LOOMIS',
+    tagline:'TPV PAX con impresora integrada (Loomis Pay)',
+    color:'#7CB342',
+    reuse:'Sin reutilización',
+    solutions:2,
+    pills:[{label:'Android', tone:'red'},{label:'Integrada', tone:'red'}],
+    images:[
+      {src:'images/loomis-1.jpg', tag:'TPV PAX en uso (Loomis Pay)'},
+      {src:'images/loomis-2.jpg', tag:'Pantalla de acceso Loomis-Pay'}
+    ],
+    tpv:[
+      {
+        name:'TPV Android (PAX)', badge:{text:'No compatible', tone:'no'},
+        list:[
+          {tone:'no', text:'Versión habitual: Android <code>7-9</code>'},
+          {tone:'no', text:'<strong>Bloqueado por proveedor</strong>'},
+          {tone:'no', text:'No reutilizable (ni comandera ni KDS)'}
+        ]
+      }
+    ],
+    printer:[
+      {
+        name:'Impresora integrada en el TPV', badge:{text:'No compatible', tone:'no'},
+        list:[
+          {tone:'no', text:'Las impresoras integradas <strong>no son compatibles</strong> con Qamarero'},
+          {tone:'no', text:'Al ir físicamente integrada, no se puede separar para usar con otro TPV'}
+        ]
+      },
+      {
+        name:'Otras impresoras WiFi externas', badge:{text:'No compatible', tone:'no'},
+        list:[
+          {tone:'no', text:'Las WiFi externas <strong>no se pueden configurar</strong> en nuestro sistema'},
+          {tone:'warn', text:'Si son <strong>SUNMI</strong>, llevan bloqueo de SUNMI Cloud: solo funcionarían con Windows (por USB, LAN o WiFi)'}
+        ]
+      }
+    ],
+    solutionsList:[
+      {
+        rank:1, recommended:true, title:'Adquirir pack completo de equipos',
+        body:'Sustituir todo el conjunto por un pack completo nuestro (TPV + impresoras compatibles). Es la opción más segura dado que ni el TPV ni la impresora integrada actuales son reutilizables.',
+        pros:['Garantiza el correcto funcionamiento del conjunto de equipos','Sistema estable y compatible al 100%'],
+        cons:['Mayor inversión inicial']
+      },
+      {
+        rank:2, recommended:false, title:'TPV Windows + impresoras externas compatibles',
+        body:'Solo viable si el cliente tiene impresoras externas reutilizables (no la integrada del PAX). El TPV se sustituye por Windows 10/11 y las impresoras se conectan por USB o LAN.',
+        note:'<strong>Importante:</strong> las impresoras WiFi reutilizadas <strong>no se pueden configurar</strong>. Si son SUNMI, solo serán compatibles con Windows mediante USB o LAN.',
+        pros:['Puede suponer algo de ahorro respecto al pack'],
+        cons:['Mayor probabilidad de incidencias','El ahorro frente al pack no suele ser significativo']
       }
     ]
   }
